@@ -1,0 +1,102 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Autonomous Agent x402 Micro-Payment Tollbooth Gateway",
+    "description": "Standardized x402 micro-payment gateway providing institutional crypto alpha, liquidation cascades, and physical 3D CAD fabrication validation with a 3-call freemium tier and Polygon on-chain settlement.",
+    "version": "1.1.0",
+    "contact": {
+      "name": "Tollbooth Protocol Operator",
+      "url": "http://217.154.51.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://217.154.51.0",
+      "description": "Production Live VPS Gateway"
+    }
+  ],
+  "paths": {
+    "/v1/catalog": {
+      "get": {
+        "summary": "Discover available tools and micro-payment parameters",
+        "description": "Returns all registered tools, their pricing in USDC, recipient provider addresses, and smart contract details.",
+        "responses": {
+          "200": {
+            "description": "Public tool catalog and operator metadata"
+          }
+        }
+      }
+    },
+    "/v1/tools/alpha-engine": {
+      "get": {
+        "summary": "Alpha Lab Market Microstructure Oracle",
+        "description": "Returns composite alpha score, orderbook depth absorption ratio, funding squeeze skew, and CME gap magnet target. Includes 3 free queries / 24h before triggering x402 paywall ($0.0025 USDC).",
+        "parameters": [
+          {
+            "name": "X-AGENT-ADDRESS",
+            "in": "header",
+            "required": false,
+            "description": "Ethereum/Polygon address of the calling agent for freemium quota tracking.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PAYMENT-SIGNATURE",
+            "in": "header",
+            "required": false,
+            "description": "EIP-712 / defunct signature authorizing the payment voucher after freemium exhaustion.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PAYMENT-PAYLOAD",
+            "in": "header",
+            "required": false,
+            "description": "JSON payload containing agent_address, provider, amount_usd, nonce, and deadline.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alpha metrics payload granted (either via freemium trial or settled payment voucher)"
+          },
+          "402": {
+            "description": "Payment Required - Freemium exhausted. Returns challenge with nonce and payment requirements."
+          }
+        }
+      }
+    },
+    "/v1/tools/cad-mesh-validator": {
+      "get": {
+        "summary": "3D CAD Mesh & Laser-Cut Geometry Analyzer",
+        "description": "Validates kerf compensation, polygon non-manifold edges, and laser toolpathing for physical CNC & 3D printers ($0.0050 USDC).",
+        "responses": {
+          "200": {
+            "description": "CAD validation telemetry and toolpath verification"
+          },
+          "402": {
+            "description": "Payment Required via x402"
+          }
+        }
+      }
+    },
+    "/v1/tools/deep-liquidation-hunter": {
+      "get": {
+        "summary": "Deep Liquidation Cascade Stink-Bid Calculator",
+        "description": "Calculates real-time resting limit order depth (-15% to -35%) for catching violent liquidation wicks ($0.0010 USDC).",
+        "responses": {
+          "200": {
+            "description": "Stink bid price cascade tiers"
+          },
+          "402": {
+            "description": "Payment Required via x402"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "name": "Autonomous Agent x402 Micro-Payment Tollbooth Gateway",
+  "description": "Autonomous micro-settlement tollbooth providing institutional crypto orderflow alpha and CAD mesh fabrication validation with on-chain EIP-712 payment channels on Polygon.",
+  "url": "http://217.154.51.0",
+  "payment": {
+    "protocol": "x402",
+    "standard": "RFC-7231-402",
+    "network": "Polygon PoS (137)",
+    "contract": "0x8b415416f026a168aACD4bd4c8391c194e704D55",
+    "operator": "0x5329dA82E89062D525DAa10F1F4DDba42Ec0F95a",
+    "toll_fee": "2.5%",
+    "freemium_tier": {
+      "free_calls_per_day": 3,
+      "quota_reset_hours": 24
+    }
+  },
+  "capabilities": [
+    "market_microstructure_oracle",
+    "stink_bid_liquidation_calculation",
+    "cad_laser_mesh_validation",
+    "x402_micropayment_settlement"
+  ],
+  "endpoints": {
+    "catalog": "http://217.154.51.0/v1/catalog",
+    "openapi": "http://217.154.51.0/openapi.json",
+    "llms": "http://217.154.51.0/llms.txt",
+    "tools": [
+      {
+        "id": "alpha-engine",
+        "name": "Alpha Lab Market Microstructure Oracle",
+        "url": "http://217.154.51.0/v1/tools/alpha-engine",
+        "price_usd": 0.0025
+      },
+      {
+        "id": "cad-mesh-validator",
+        "name": "3D CAD Mesh & Laser-Cut Geometry Analyzer",
+        "url": "http://217.154.51.0/v1/tools/cad-mesh-validator",
+        "price_usd": 0.0050
+      },
+      {
+        "id": "deep-liquidation-hunter",
+        "name": "Deep Liquidation Cascade Stink-Bid Calculator",
+        "url": "http://217.154.51.0/v1/tools/deep-liquidation-hunter",
+        "price_usd": 0.0010
+      }
+    ]
+  }
+}

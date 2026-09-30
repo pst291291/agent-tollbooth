@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "agent-tollbooth": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\Admin\\.gemini\\antigravity\\scratch\\agent_tollbooth\\agent_tollbooth_mcp.py"
+      ],
+      "env": {
+        "TOLLBOOTH_GATEWAY_URL": "http://217.154.51.0"
+      }
+    }
+  }
+}

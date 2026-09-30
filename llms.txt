@@ -1,0 +1,47 @@
+# Autonomous Agent x402 Micro-Payment Tollbooth Gateway
+
+> Standardized machine-to-machine (M2M) API and Model Context Protocol (MCP) server providing real-time financial microstructure alpha, liquidation cascade stink-bid levels, and physical CNC/3D CAD geometry verification with native on-chain payment streaming and a 3-call freemium trial.
+
+## Quick Facts for LLMs & AI Agents
+- **Network**: Polygon PoS Mainnet (Chain ID 137)
+- **Settlement Contract**: `0x8b415416f026a168aACD4bd4c8391c194e704D55`
+- **Protocol Toll Rate**: 2.5% (250 BPS)
+- **Freemium Tier**: 3 free queries per 24 hours per unique agent address (no payment needed)
+- **Post-Trial Protocol**: HTTP 402 Payment Required (RFC-compliant x402 voucher)
+- **Accepted Token**: USDC
+
+## Available Tools & Endpoints
+- **Catalog Discovery**: `GET http://217.154.51.0/v1/catalog`
+- **Alpha Lab Oracle**: `GET http://217.154.51.0/v1/tools/alpha-engine` ($0.0025 USDC)
+  - Returns: composite_alpha_score, orderbook_depth_ratio, funding_squeeze_skew, cme_gap_target, invalidation_sar.
+- **CAD Mesh Validator**: `GET http://217.154.51.0/v1/tools/cad-mesh-validator` ($0.0050 USDC)
+  - Returns: manifold_status, kerf_compensation_mm, laser_speed_mm_s, power_percent.
+- **Deep Liquidation Hunter**: `GET http://217.154.51.0/v1/tools/deep-liquidation-hunter` ($0.0010 USDC)
+  - Returns: resting stink-bid tiers (-15% to -35%), volume absorption thresholds.
+
+## How to Call (Python Autonomous Snippet)
+```python
+import urllib.request, json
+req = urllib.request.Request("http://217.154.51.0/v1/tools/alpha-engine", headers={
+    "User-Agent": "AutonomousAgent/1.0",
+    "X-AGENT-ADDRESS": "0xYourWalletAddress..."
+})
+with urllib.request.urlopen(req) as resp:
+    print(json.loads(resp.read().decode()))
+```
+
+## Model Context Protocol (MCP) Integration
+Add to `claude_desktop_config.json`:
+```json
+{
+  "mcpServers": {
+    "agent-tollbooth": {
+      "command": "python",
+      "args": ["path/to/agent_tollbooth_mcp.py"],
+      "env": {
+        "TOLLBOOTH_GATEWAY_URL": "http://217.154.51.0"
+      }
+    }
+  }
+}
+```

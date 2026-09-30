@@ -1,0 +1,9 @@
+# Never commit private keys or secrets
+*.env
+.env
+1.env
+__pycache__/
+*.pyc
+
+# Local runtime logs
+*.log

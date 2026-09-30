@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/mcp-server.json",
+  "name": "agent-tollbooth",
+  "title": "Agent Tollbooth - Autonomous Micro-Payment Gateway & Tools",
+  "description": "Exposes real-time crypto microstructure alpha signals, deep liquidation cascade stink-bid levels, and CAD/laser mesh geometry validators through an RFC-compliant x402 payment clearing channel on Polygon.",
+  "version": "1.1.0",
+  "license": "MIT",
+  "homepage": "http://217.154.51.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agent-tollbooth/tollbooth-gateway"
+  },
+  "runtime": "python",
+  "entrypoint": "agent_tollbooth_mcp.py",
+  "tools": [
+    {
+      "name": "get_market_microstructure_alpha",
+      "description": "Returns institutional market microstructure metrics for crypto assets: 2:1 orderbook depth absorption, derivatives funding rate squeeze skew, and CME weekend gap magnet targets."
+    },
+    {
+      "name": "get_stink_bid_cascade_levels",
+      "description": "Calculates high-convexity resting limit order depths ('stink bids') sitting below market liquidation clusters (-15% to -35%) to capture violent flash-crash V-reversals."
+    },
+    {
+      "name": "validate_cad_laser_mesh",
+      "description": "Validates 3D CAD mesh files (STL/OBJ) and 2D vector laser sheets (SVG) for watertight manifold edges, kerf beam offset compensation (0.15mm), and laser toolpath cutting parameters."
+    }
+  ]
+}

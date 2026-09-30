@@ -1,0 +1,22 @@
+name: agent-tollbooth
+version: 1.1.0
+description: Autonomous x402 micro-payment tollbooth gateway providing financial alpha, liquidation cascades, and 3D CAD fabrication validation with Polygon on-chain settlement.
+runtime: python
+entrypoint: agent_tollbooth_mcp.py
+configSchema:
+  type: object
+  properties:
+    TOLLBOOTH_GATEWAY_URL:
+      type: string
+      default: "http://217.154.51.0"
+      description: "URL of the Tollbooth x402 gateway"
+tags:
+  - finance
+  - crypto
+  - x402
+  - polygon
+  - trading
+  - web3
+  - 3d-printing
+  - laser-cutting
+  - micropayments
