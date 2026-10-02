@@ -7,3 +7,19 @@ __pycache__/
 
 # Local runtime logs
 *.log
+
+# Internal admin & VPS setup scripts (contain SSH credentials)
+setup_vps*.py
+vps_deployer.py
+bridge_port80.py
+update_index_banner.py
+update_proxy_ip.py
+sync_discovery_to_vps.py
+test_vps.py
+check_all_envs.py
+inspect_env_folders.py
+deploy_tollbooth_live.py
+fetch_build.py
+switch_port.py
+toll_ledger.json
+build/

@@ -1,0 +1,67 @@
+[
+  {
+    "tier_name": "Tier 1: Early Beta (Niche Tooling)",
+    "daily_agent_calls": "25,000",
+    "avg_price_per_call": "$0.0025",
+    "toll_rate": "5.0%",
+    "daily_gross_volume_usd": "$62.50",
+    "daily_toll_revenue_usd": "$3.12",
+    "monthly_net_profit_usd": "$45.05",
+    "annual_net_profit_usd": "$540.62",
+    "annual_net_profit_gbp": "\u00a3415.87",
+    "weekly_cashflow_gbp": "\u00a38.00",
+    "charity_checks_per_week_at_10k": 0
+  },
+  {
+    "tier_name": "Tier 2: Production Gateway (50 Integrated Agent Tools)",
+    "daily_agent_calls": "250,000",
+    "avg_price_per_call": "$0.0025",
+    "toll_rate": "5.0%",
+    "daily_gross_volume_usd": "$625.00",
+    "daily_toll_revenue_usd": "$31.25",
+    "monthly_net_profit_usd": "$800.50",
+    "annual_net_profit_usd": "$9,606.25",
+    "annual_net_profit_gbp": "\u00a37,389.42",
+    "weekly_cashflow_gbp": "\u00a3142.10",
+    "charity_checks_per_week_at_10k": 0
+  },
+  {
+    "tier_name": "Tier 3: Ecosystem Hub (AgentKit & x402 Default Relayer)",
+    "daily_agent_calls": "2,500,000",
+    "avg_price_per_call": "$0.0020",
+    "toll_rate": "3.5%",
+    "daily_gross_volume_usd": "$5,000.00",
+    "daily_toll_revenue_usd": "$175.00",
+    "monthly_net_profit_usd": "$4,822.80",
+    "annual_net_profit_usd": "$57,875.00",
+    "annual_net_profit_gbp": "\u00a344,519.23",
+    "weekly_cashflow_gbp": "\u00a3856.14",
+    "charity_checks_per_week_at_10k": 0
+  },
+  {
+    "tier_name": "Tier 4: Global Machine-to-Machine Backplane",
+    "daily_agent_calls": "25,000,000",
+    "avg_price_per_call": "$0.0015",
+    "toll_rate": "2.5%",
+    "daily_gross_volume_usd": "$37,500.00",
+    "daily_toll_revenue_usd": "$937.50",
+    "monthly_net_profit_usd": "$26,015.00",
+    "annual_net_profit_usd": "$312,187.50",
+    "annual_net_profit_gbp": "\u00a3240,144.23",
+    "weekly_cashflow_gbp": "\u00a34,618.16",
+    "charity_checks_per_week_at_10k": 0
+  },
+  {
+    "tier_name": "Tier 5: Planetary Autonomous Swarm Economy",
+    "daily_agent_calls": "250,000,000",
+    "avg_price_per_call": "$0.0010",
+    "toll_rate": "1.5%",
+    "daily_gross_volume_usd": "$250,000.00",
+    "daily_toll_revenue_usd": "$3,750.00",
+    "monthly_net_profit_usd": "$99,060.00",
+    "annual_net_profit_usd": "$1,188,750.00",
+    "annual_net_profit_gbp": "\u00a3914,423.08",
+    "weekly_cashflow_gbp": "\u00a317,585.06",
+    "charity_checks_per_week_at_10k": 1
+  }
+]
