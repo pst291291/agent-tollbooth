@@ -27,6 +27,7 @@ Enables AI agent swarms (Claude, AutoGPT, CrewAI, LangChain, Cursor) to discover
 | `/v1/tools/alpha-engine` | **Alpha Lab Microstructure Oracle** | $0.0025 | Composite score, 2:1 orderbook depth ratio, funding rate skew, CME gap target |
 | `/v1/tools/cad-mesh-validator` | **CAD Mesh & Laser Geometry Validator** | $0.0050 | Non-manifold edges, kerf beam offset compensation, CNC/laser cutting parameters |
 | `/v1/tools/deep-liquidation-hunter` | **Deep Liquidation Stink-Bid Levels** | $0.0010 | Extreme limit-order cascades (-15% to -35%) to catch liquidation wicks |
+| `/v1/tools/gpu-burst-broker` | **Autonomous GPU Burst Arbitrage Broker** | $0.0500 | Live Vast.ai verified spot GPUs (RTX 3090, 4090, A100, H100) + 3-min bursts with 180s deadman shield |
 
 ---
 

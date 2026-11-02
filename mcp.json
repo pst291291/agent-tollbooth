@@ -24,6 +24,10 @@
     {
       "name": "validate_cad_laser_mesh",
       "description": "Validates 3D CAD mesh files (STL/OBJ) and 2D vector laser sheets (SVG) for watertight manifold edges, kerf beam offset compensation (0.15mm), and laser toolpath cutting parameters."
+    },
+    {
+      "name": "rent_gpu_burst_arbitrage",
+      "description": "Scans live Vast.ai verified spot GPUs (RTX 3090, RTX 4090, A100, H100) and provisions on-demand 3-minute compute bursts via x402 micro-payment with 180-second auto-destroy deadman protection."
     }
   ]
 }

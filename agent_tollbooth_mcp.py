@@ -10,6 +10,7 @@ import sys
 import json
 import urllib.request
 import urllib.error
+import urllib.parse
 
 # Connects directly to the live VPS gateway, or local instance if offline
 GATEWAY_URL = os.environ.get("TOLLBOOTH_GATEWAY_URL", "http://217.154.51.0")
@@ -58,6 +59,21 @@ TOOLS_SCHEMA = [
                 }
             },
             "required": ["mesh_name"]
+        }
+    },
+    {
+        "name": "rent_gpu_burst_arbitrage",
+        "description": "Scans live Vast.ai verified spot GPUs (RTX 3090, RTX 4090, A100, H100) and provisions on-demand 3-minute compute bursts via x402 micro-payment with 180-second auto-destroy deadman protection.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "tier": {
+                    "type": "string",
+                    "description": "Preferred GPU tier ('RTX 3090', 'RTX 4090', 'A100', 'H100')",
+                    "default": "RTX 3090"
+                }
+            },
+            "required": ["tier"]
         }
     }
 ]
@@ -123,6 +139,18 @@ def handle_rpc_request(req):
             }
         elif name == "validate_cad_laser_mesh":
             data = call_gateway("/v1/tools/cad-mesh-validator")
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "content": [
+                        {"type": "text", "text": json.dumps(data, indent=2)}
+                    ]
+                }
+            }
+        elif name == "rent_gpu_burst_arbitrage":
+            tier = urllib.parse.quote(args.get("tier", "RTX 3090"))
+            data = call_gateway(f"/v1/tools/gpu-burst-broker?tier={tier}")
             return {
                 "jsonrpc": "2.0",
                 "id": req_id,

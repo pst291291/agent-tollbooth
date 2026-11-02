@@ -97,6 +97,20 @@
           }
         }
       }
+    },
+    "/v1/tools/gpu-burst-broker": {
+      "get": {
+        "summary": "Autonomous Wholesale-to-Retail GPU Burst Arbitrage Broker",
+        "description": "Scans live Vast.ai verified spot GPUs (RTX 3090, RTX 4090, A100, H100) and provisions on-demand 3-minute compute bursts ($0.0500 USDC) with 180s auto-destroy deadman protection.",
+        "responses": {
+          "200": {
+            "description": "Live GPU orderbook quote (freemium) or paid GPU burst execution receipt"
+          },
+          "402": {
+            "description": "Payment Required via x402"
+          }
+        }
+      }
     }
   }
 }

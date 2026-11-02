@@ -43,6 +43,12 @@
         "name": "Deep Liquidation Cascade Stink-Bid Calculator",
         "url": "http://217.154.51.0/v1/tools/deep-liquidation-hunter",
         "price_usd": 0.0010
+      },
+      {
+        "id": "gpu-burst-broker",
+        "name": "Autonomous Wholesale-to-Retail GPU Burst Arbitrage Broker",
+        "url": "http://217.154.51.0/v1/tools/gpu-burst-broker",
+        "price_usd": 0.0500
       }
     ]
   }

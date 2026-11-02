@@ -19,6 +19,11 @@ test_vps.py
 check_all_envs.py
 inspect_env_folders.py
 deploy_tollbooth_live.py
+deploy_gpu_broker_to_vps.py
+upgrade_vps_storefront.py
+audit_vps_traffic.py
+check_customers.py
+push_to_github.bat
 fetch_build.py
 switch_port.py
 toll_ledger.json

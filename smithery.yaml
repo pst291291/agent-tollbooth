@@ -1,6 +1,6 @@
 name: agent-tollbooth
-version: 1.1.0
-description: Autonomous x402 micro-payment tollbooth gateway providing financial alpha, liquidation cascades, and 3D CAD fabrication validation with Polygon on-chain settlement.
+version: 1.2.0
+description: Autonomous x402 micro-payment tollbooth & Cloud GPU burst arbitrage broker (RTX 3090, 4090, A100, H100), crypto alpha oracle, and 3D CAD mesh validator with Polygon settlement.
 runtime: python
 entrypoint: agent_tollbooth_mcp.py
 configSchema:
@@ -11,6 +11,10 @@ configSchema:
       default: "http://217.154.51.0"
       description: "URL of the Tollbooth x402 gateway"
 tags:
+  - gpu
+  - vast-ai
+  - cloud-compute
+  - arbitrage
   - finance
   - crypto
   - x402

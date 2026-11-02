@@ -7,6 +7,7 @@ import socketserver
 import urllib.parse
 from eth_account import Account
 from eth_account.messages import encode_defunct
+from vast_arbitrage_broker import scan_vast_spot_orderbook, execute_paid_gpu_burst
 
 PORT = 8402
 TOLLBOOTH_OPERATOR_ADDRESS = "0x5329dA82E89062D525DAa10F1F4DDba42Ec0F95a" # User's live wallet
@@ -41,6 +42,12 @@ TOOL_CATALOG = {
         "description": "Calculates real-time resting limit order depth (-15% to -35%) for catching violent liquidation wicks.",
         "price_usd": 0.0010,
         "provider_address": "0x9999999999999999999999999999999999999999"
+    },
+    "/v1/tools/gpu-burst-broker": {
+        "name": "Autonomous Wholesale-to-Retail GPU Burst Arbitrage Broker",
+        "description": "Scans live Vast.ai verified spot GPUs (RTX 3090, RTX 4090, A100, H100) and provisions on-demand 3-minute compute bursts with 180s auto-destroy deadman protection.",
+        "price_usd": 0.0500,
+        "provider_address": TOLLBOOTH_OPERATOR_ADDRESS
     }
 }
 
@@ -102,6 +109,7 @@ class X402TollboothHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         endpoint = parsed.path
+        query_params = urllib.parse.parse_qs(parsed.query)
         client_ip = self.client_address[0]
         agent_id_header = self.headers.get("X-AGENT-ADDRESS", client_ip)
 
@@ -149,7 +157,7 @@ class X402TollboothHandler(http.server.BaseHTTPRequestHandler):
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
 
-                payload_data = self.generate_payload(endpoint)
+                payload_data = self.generate_payload(endpoint, is_paid=False, query_params=query_params)
                 response_body = {
                     "success": True,
                     "freemium_sample": True,
@@ -243,7 +251,7 @@ class X402TollboothHandler(http.server.BaseHTTPRequestHandler):
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
 
-                payload_data = self.generate_payload(endpoint)
+                payload_data = self.generate_payload(endpoint, is_paid=True, query_params=query_params)
                 response_body = {
                     "success": True,
                     "freemium_sample": False,
@@ -271,7 +279,8 @@ class X402TollboothHandler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps({"error": "Endpoint not found"}).encode())
 
-    def generate_payload(self, endpoint):
+    def generate_payload(self, endpoint, is_paid=False, query_params=None):
+        query_params = query_params or {}
         if endpoint == "/v1/tools/alpha-engine":
             return {
                 "asset": "BTC-PERP",
@@ -293,6 +302,24 @@ class X402TollboothHandler(http.server.BaseHTTPRequestHandler):
                 "laser_cut_sheet_svg": "file:///C:/Users/Admin/.gemini/antigravity/scratch/gothic_window/laser_cut/master_laser_cut_sheet.svg",
                 "status": "FABRICATION_READY"
             }
+        elif endpoint == "/v1/tools/gpu-burst-broker":
+            preferred_tier = query_params.get("tier", ["RTX 3090"])[0]
+            live_lease = query_params.get("live", ["false"])[0].lower() == "true"
+            orderbook = scan_vast_spot_orderbook()
+            if not is_paid:
+                return {
+                    "mode": "FREEMIUM_LIVE_ORDERBOOK_QUOTE",
+                    "notice": "Freemium calls return live Vast.ai wholesale vs. retail burst arbitrage quotes. Submit a signed x402 payment voucher ($0.0500 USDC) to trigger live GPU burst execution.",
+                    "preferred_tier": preferred_tier,
+                    "live_orderbook": orderbook
+                }
+            else:
+                execution = execute_paid_gpu_burst(preferred_tier=preferred_tier, live_lease_enabled=live_lease)
+                return {
+                    "mode": "PAID_X402_BURST_EXECUTED",
+                    "execution_receipt": execution,
+                    "live_orderbook_snapshot": orderbook
+                }
         else:
             return {
                 "asset": "BTC",

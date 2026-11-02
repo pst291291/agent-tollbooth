@@ -18,6 +18,8 @@
   - Returns: manifold_status, kerf_compensation_mm, laser_speed_mm_s, power_percent.
 - **Deep Liquidation Hunter**: `GET http://217.154.51.0/v1/tools/deep-liquidation-hunter` ($0.0010 USDC)
   - Returns: resting stink-bid tiers (-15% to -35%), volume absorption thresholds.
+- **Autonomous GPU Burst Arbitrage Broker**: `GET http://217.154.51.0/v1/tools/gpu-burst-broker` ($0.0500 USDC)
+  - Returns: live Vast.ai verified wholesale spot orderbook vs. retail 3-minute burst rates, and provisions warm-pool/spot GPU bursts with 180s auto-destroy deadman protection.
 
 ## How to Call (Python Autonomous Snippet)
 ```python
