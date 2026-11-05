@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpu-cad-broker-mcp"
+version = "1.2.0"
+description = "Model Context Protocol (MCP) server for on-demand cloud GPU spot compute bursts, parametric 3D STL & laser SVG compilation, and Polymarket intelligence."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "pst291291" }
+]
+keywords = [
+    "mcp",
+    "mcp-server",
+    "gpu",
+    "vast-ai",
+    "parametric-cad",
+    "stl",
+    "polymarket",
+    "claude-desktop",
+    "cursor"
+]
+dependencies = []
+
+[project.scripts]
+gpu-cad-broker-mcp = "agent_tollbooth_mcp:run_mcp_server"
+
+[project.urls]
+Homepage = "https://github.com/pst291291/agent-tollbooth"
+Repository = "https://github.com/pst291291/agent-tollbooth"

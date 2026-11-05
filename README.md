@@ -1,83 +1,79 @@
-# ⚡ Agent Tollbooth: Autonomous x402 Micro-Payment Gateway & MCP Tools
+# ⚡ Cloud GPU Rental & Parametric CAD MCP Server
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Polygon Mainnet](https://img.shields.io/badge/Polygon-0x8b41...4D55-blueviolet)](https://polygonscan.com/address/0x8b415416f026a168aACD4bd4c8391c194e704D55)
-[![x402 Protocol](https://img.shields.io/badge/Protocol-x402_HTTP_402-green)](http://217.154.51.0/v1/catalog)
-[![MCP Compliant](https://img.shields.io/badge/MCP-JSON--RPC_2.0-orange)](http://217.154.51.0/.well-known/mcp.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![MCP Standard](https://img.shields.io/badge/MCP-JSON--RPC_2.0-orange)](https://modelcontextprotocol.io)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
 
-An open-source, production-ready micro-payment tollbooth and Model Context Protocol (MCP) server designed for the emerging autonomous machine-to-machine (A2A) economy. 
+A production-ready **Model Context Protocol (MCP)** server providing direct local tool execution for Claude Desktop, Cursor, Windsurf, and autonomous AI swarms:
 
-Enables AI agent swarms (Claude, AutoGPT, CrewAI, LangChain, Cursor) to discover, test, and pay for high-value financial market oracles and physical CAD fabrication tools using gasless off-chain EIP-712 payment vouchers with Polygon on-chain settlement.
-
----
-
-## 🎯 Features
-
-1. **3-Call Freemium Conversion Hook**: Every agent gets 3 free queries every 24 hours to inspect sample data before hitting the paywall.
-2. **RFC-7231 x402 Protocol**: Intercepts queries when quotas expire and returns HTTP 402 with structured cryptographic payment challenge headers.
-3. **Polygon Smart Contract Settlement**: Immutable fee-split logic deployed live on Polygon Mainnet ([`0x8b415416f026a168aACD4bd4c8391c194e704D55`](https://polygonscan.com/address/0x8b415416f026a168aACD4bd4c8391c194e704D55)).
-4. **Native MCP Server**: Ready to drop into Claude Desktop, Cursor, and Windsurf.
+1. **Autonomous Cloud GPU Spot Arbitrage (`rent_gpu_burst_arbitrage`)**: Scans real-time wholesale spot floors (RTX 3090, RTX 4090, A100, H100) and executes on-demand compute bursts with automatic 180-second idle deadman destruction protection.
+2. **Parametric 3D CAD & Laser-Cut Compiler (`compile_parametric_cad_stl_svg`)**: Compiles watertight binary 3D `.STL` stepped flush-face structural joinery and kerf-compensated `.SVG` laser cut sheets on the fly across any pair of mismatched material thicknesses.
+3. **24/7 Polymarket & Stink-Bid Intelligence (`get_polymarket_and_stinkbid_radar`)**: Scans Polymarket orderbooks for YES+NO pricing anomalies and calculates resting flash-crash limit order tiers (-12% to -25%).
+4. **Market Microstructure & CAD Validation Oracles**: Provides orderbook depth ratios, funding skew, and watertight 3D mesh verification.
 
 ---
 
-## 🛠 Available Tools
+## 📦 Installation & Setup
 
-| Tool Endpoint | Tool Name | Price (USDC) | Purpose |
-| :--- | :--- | :--- | :--- |
-| `/v1/tools/alpha-engine` | **Alpha Lab Microstructure Oracle** | $0.0025 | Composite score, 2:1 orderbook depth ratio, funding rate skew, CME gap target |
-| `/v1/tools/cad-mesh-validator` | **CAD Mesh & Laser Geometry Validator** | $0.0050 | Non-manifold edges, kerf beam offset compensation, CNC/laser cutting parameters |
-| `/v1/tools/deep-liquidation-hunter` | **Deep Liquidation Stink-Bid Levels** | $0.0010 | Extreme limit-order cascades (-15% to -35%) to catch liquidation wicks |
-| `/v1/tools/gpu-burst-broker` | **Autonomous GPU Burst Arbitrage Broker** | $0.0500 | Live Vast.ai verified spot GPUs (RTX 3090, 4090, A100, H100) + 3-min bursts with 180s deadman shield |
+### Option 1: Direct Python Execution (Claude Desktop & Cursor)
 
----
-
-## 🚀 Quickstart
-
-### 1. Direct HTTP Calling (Autonomous Agent)
-```python
-import urllib.request
-import json
-
-req = urllib.request.Request("http://217.154.51.0/v1/tools/alpha-engine", headers={
-    "User-Agent": "AutonomousAgent/1.0",
-    "X-AGENT-ADDRESS": "0xYourAgentWalletAddress"
-})
-
-with urllib.request.urlopen(req) as resp:
-    data = json.loads(resp.read().decode())
-    print("Received Oracle Data:", data)
+Clone the repository:
+```bash
+git clone https://github.com/pst291291/agent-tollbooth.git
+cd agent-tollbooth
+pip install -e .
 ```
 
-### 2. Using with Claude Desktop (MCP)
-Add this to your `claude_desktop_config.json`:
+### Option 2: Claude Desktop Configuration
+
+Add the following to your `claude_desktop_config.json`:
+
 ```json
 {
   "mcpServers": {
-    "agent-tollbooth": {
+    "gpu-rental-mcp": {
       "command": "python",
-      "args": ["path/to/agent_tollbooth_mcp.py"],
+      "args": ["-m", "agent_tollbooth_mcp"],
       "env": {
-        "TOLLBOOTH_GATEWAY_URL": "http://217.154.51.0"
+        "VAST_API_KEY": "optional_your_vast_key"
       }
     }
   }
 }
 ```
 
----
+### Option 3: Cursor / Windsurf Configuration
 
-## 🔗 Discovery & Standards Compliance
-- **Catalog**: `http://217.154.51.0/v1/catalog`
-- **Agent Discovery**: `http://217.154.51.0/.well-known/agent.json`
-- **MCP Manifest**: `http://217.154.51.0/.well-known/mcp.json`
-- **LLM Context**: `http://217.154.51.0/llms.txt`
-- **OpenAPI 3.1 Spec**: `http://217.154.51.0/openapi.json`
+In Cursor Settings -> Features -> MCP Servers -> Add New MCP Server:
+- **Name**: `gpu-rental-mcp`
+- **Type**: `command`
+- **Command**: `python -m agent_tollbooth_mcp`
 
 ---
 
-## 📜 On-Chain Verification
-- **Network**: Polygon PoS (Chain ID: 137)
-- **Contract**: [`0x8b415416f026a168aACD4bd4c8391c194e704D55`](https://polygonscan.com/address/0x8b415416f026a168aACD4bd4c8391c194e704D55)
-- **Deployment Block**: #94729837
-- **Operator Royalty Cut**: 2.5% (250 BPS)
-- **License**: MIT
+## 🛠 Available MCP Tools
+
+| Tool Name | Parameters | What It Does |
+| :--- | :--- | :--- |
+| `rent_gpu_burst_arbitrage` | `tier` (e.g. `'RTX 3090'`, `'RTX 4090'`, `'A100'`, `'H100'`) | Queries live wholesale spot orderbooks and provisions 3-minute compute bursts with 180s auto-destroy protection. |
+| `compile_parametric_cad_stl_svg` | `board_a_mm`, `board_b_mm`, `kerf_mm` | Compiles watertight binary 3D `.STL` stepped joint models and kerf-compensated `.SVG` laser cut sheets. |
+| `get_polymarket_and_stinkbid_radar` | *none* | Streams real-time Polymarket orderbook anomalies and crypto flash-crash cascade stink-bid levels. |
+| `get_market_microstructure_alpha` | `asset` (`'BTC'`, `'ETH'`) | Returns 2:1 depth absorption ratios, funding rate skew, and CME gap targets. |
+| `get_stink_bid_cascade_levels` | `asset` (`'BTC'`, `'ETH'`, `'SOL'`) | Calculates high-convexity resting limit order depths (-12% to -25%). |
+| `validate_cad_laser_mesh` | `mesh_name` | Validates manifold edges, kerf beam offset compensation, and CNC cutting parameters. |
+
+---
+
+## 🏗 Repository Structure & Source Code
+
+* **`agent_tollbooth_mcp.py`**: Core Model Context Protocol (MCP) server handling stdio JSON-RPC 2.0 communication (`tools/list` and `tools/call`).
+* **`vast_arbitrage_broker.py`**: Pure Python connector interfacing wholesale cloud GPU providers, warm-pool reuse, and background deadman thread monitors.
+* **`pyproject.toml`**: Standard Python packaging specification and entry point configuration.
+* **`AgentTollbooth.sol`**: (Optional) Smart contract deployed on Polygon Mainnet (`0x8b415416f026a168aACD4bd4c8391c194e704D55`) for on-chain EIP-712 micro-settlements.
+* **`x402_gateway.py`**: (Optional) Hosted HTTP tollbooth gateway proxying HTTP 402 challenges to external agent swarms.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).

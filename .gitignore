@@ -18,6 +18,7 @@ sync_discovery_to_vps.py
 test_vps.py
 check_all_envs.py
 inspect_env_folders.py
+exports/
 deploy_tollbooth_live.py
 deploy_gpu_broker_to_vps.py
 upgrade_vps_storefront.py

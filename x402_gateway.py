@@ -5,6 +5,7 @@ import random
 import http.server
 import socketserver
 import urllib.parse
+import urllib.request
 from eth_account import Account
 from eth_account.messages import encode_defunct
 from vast_arbitrage_broker import scan_vast_spot_orderbook, execute_paid_gpu_burst
@@ -47,6 +48,18 @@ TOOL_CATALOG = {
         "name": "Autonomous Wholesale-to-Retail GPU Burst Arbitrage Broker",
         "description": "Scans live Vast.ai verified spot GPUs (RTX 3090, RTX 4090, A100, H100) and provisions on-demand 3-minute compute bursts with 180s auto-destroy deadman protection.",
         "price_usd": 0.0500,
+        "provider_address": TOLLBOOTH_OPERATOR_ADDRESS
+    },
+    "/v1/tools/parametric-cad-forge": {
+        "name": "On-Demand Parametric 3D STL & Laser-Cut SVG Compiler",
+        "description": "Compiles custom-fitted binary 3D .STL stepped flush-face structural joinery and kerf-compensated .SVG laser cut sheets on our 4-core Frankfurt EPYC cluster.",
+        "price_usd": 0.0150,
+        "provider_address": TOLLBOOTH_OPERATOR_ADDRESS
+    },
+    "/v1/tools/polymarket-arb-radar": {
+        "name": "24/7 Polymarket Orderbook Mispricing & Crypto Stink-Bid Radar",
+        "description": "Streams real-time Polymarket YES+NO sum-of-shares anomalies and multi-tier flash-crash stink-bid levels from our Frankfurt DE-CIX scanner.",
+        "price_usd": 0.0020,
         "provider_address": TOLLBOOTH_OPERATOR_ADDRESS
     }
 }
@@ -320,6 +333,23 @@ class X402TollboothHandler(http.server.BaseHTTPRequestHandler):
                     "execution_receipt": execution,
                     "live_orderbook_snapshot": orderbook
                 }
+        elif endpoint == "/v1/tools/parametric-cad-forge":
+            board_a = query_params.get("board_a", ["18.0"])[0]
+            board_b = query_params.get("board_b", ["12.0"])[0]
+            kerf = query_params.get("kerf", ["0.15"])[0]
+            try:
+                url = f"http://82.165.118.102/api/compile-cad?board_a={board_a}&board_b={board_b}&kerf={kerf}"
+                with urllib.request.urlopen(url, timeout=6) as r:
+                    return json.loads(r.read().decode("utf-8"))
+            except Exception as e:
+                return {"error": f"Frankfurt 4-Core CAD compiler unreachable: {e}"}
+        elif endpoint == "/v1/tools/polymarket-arb-radar":
+            try:
+                url = "http://82.165.118.102/api/radar"
+                with urllib.request.urlopen(url, timeout=6) as r:
+                    return json.loads(r.read().decode("utf-8"))
+            except Exception as e:
+                return {"error": f"Frankfurt Arbitrage Radar unreachable: {e}"}
         else:
             return {
                 "asset": "BTC",
